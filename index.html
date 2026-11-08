@@ -1,207 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vivek Nair — Mission Log</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Vivek Nair | Mechanical &amp; Aerospace Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#080b0d;
-    --panel:#0e1417;
-    --line:#1d2b2b;
-    --green:#5eead4;
-    --amber:#ffb454;
-    --text:#dbe7e3;
-    --muted:#6d7f7c;
-    box-sizing:border-box;
-    padding-top:env(safe-area-inset-top,0px);
-    padding-bottom:env(safe-area-inset-bottom,0px);
-  }
-  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:48px 48px;
-    background-position:center top;
-  }
-  ::selection{background:var(--green); color:#062018;}
-  a{color:var(--green); text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
+:root{--bg:#f3f6fb;--sur:#fff;--line:#d9e0ec;--tx:#0e1626;--mut:#566681;--acc:#00806e;--amb:#a85a00;--bad:#c2362b;--g1:#d4e6f7;--g2:#7aa2cc;--gl:rgba(14,22,38,.2);--glow:rgba(0,128,110,.08);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151f35;--sur:#1d2a46;--line:#32436a;--tx:#f1f5fc;--mut:#a6b6d1;--acc:#5eead4;--amb:#ffb454;--bad:#ff7a6b;--g1:#1f3a5c;--g2:#091428;--gl:rgba(150,190,255,.22);--glow:rgba(94,234,212,.12);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#151f35;--sur:#1d2a46;--line:#32436a;--tx:#f1f5fc;--mut:#a6b6d1;--acc:#5eead4;--amb:#ffb454;--bad:#ff7a6b;--g1:#1f3a5c;--g2:#091428;--gl:rgba(150,190,255,.22);--glow:rgba(94,234,212,.12);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);height:auto}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 500px at 85% -5%,var(--glow),transparent) var(--bg);color:var(--tx);font:400 16px/1.65 'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+::selection{background:var(--acc);color:var(--bg)}
+.mono,.tele b,.role-line,.when,.status,.lab small,output{font-family:'Geist Mono',ui-monospace,monospace}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:20px;padding:12px max(20px,calc((100% - 1080px)/2));background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;color:var(--tx);letter-spacing:-.01em;white-space:nowrap}
+.bar nav{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
+.bar nav a{color:var(--mut);font-size:14px;padding:6px 11px;border-radius:99px;white-space:nowrap}
+.bar nav a:hover{color:var(--tx);background:var(--sur);text-decoration:none}
+.avail{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc);animation:p 2s ease-in-out infinite}
+@keyframes p{50%{opacity:.35}}
+main{max-width:1080px;margin:0 auto;padding:0 20px}
+.hero{display:grid;grid-template-columns:1fr minmax(320px,470px);gap:48px;align-items:center;padding:72px 0 80px}
+.hero h1{font-size:clamp(2.7rem,6.4vw,4.7rem);line-height:1;font-weight:700;letter-spacing:-.035em}
+.hero h1 em{display:block;font-style:normal;color:var(--mut)}
+.hero .role{margin-top:22px;color:var(--mut);font-size:1.1rem;max-width:46ch}
+.hero .links{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.hero .links a{border:1px solid var(--line);background:var(--sur);color:var(--tx);padding:8px 16px;border-radius:99px;font-size:14px;transition:border-color .2s}
+.hero .links a:hover{border-color:var(--acc);text-decoration:none}
+.hero .copy{animation:in .9s cubic-bezier(.2,.7,.2,1) both}
+.stage{animation:in .9s .15s cubic-bezier(.2,.7,.2,1) both}
+@keyframes in{from{opacity:0;transform:translateY(18px)}}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:22px;padding:18px}
+.stage h2{font-size:1.05rem;font-weight:600}.stage p{font-size:13.5px;color:var(--mut);line-height:1.5;margin-top:2px}
+canvas{display:block;width:100%}
+#orb{aspect-ratio:1;margin:6px 0}
+.tele{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tele.two{grid-template-columns:1fr 1fr;margin-top:12px}
+.tele>div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:0}
+.tele small{display:block;font-size:10px;color:var(--mut);line-height:1.3;font-family:'Geist',sans-serif}
+.tele b{font-size:13px;font-weight:500;display:block;margin-top:3px;white-space:nowrap}.tele b.a,.tele .live{color:var(--amb)}
+.ctl{display:grid;gap:10px;margin-top:14px}
+.sl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;font-size:13px;color:var(--mut)}
+.sl output{justify-self:end;color:var(--tx);font-size:12px}.sl input{grid-column:1/-1;width:100%;accent-color:var(--acc)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:13px;color:var(--tx);background:none;border:1px solid var(--line);border-radius:99px;padding:6px 13px;cursor:pointer}
+button:hover{border-color:var(--acc)}
+section{display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:40px;padding:72px 0;border-top:1px solid var(--line)}
+section>*{grid-column:2}
+section .head{grid-column:1;grid-row:1/span 30;align-self:start;position:sticky;top:84px;display:block}
+.head .num{display:block;font-size:12px;color:var(--acc);margin-bottom:4px}
+.head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.brief{max-width:64ch;font-size:1.06rem;line-height:1.75}.brief+.brief{margin-top:16px}
+.hl{color:var(--acc);font-weight:600}.hl-a{color:var(--amb);font-weight:600}
+.skillgrid{display:flex;flex-wrap:wrap;gap:8px}
+.skillgrid span{border:1px solid var(--line);background:var(--sur);padding:5px 14px;border-radius:99px;font-size:14px}
+.module{background:var(--sur);border:1px solid var(--line);border-radius:22px;margin-bottom:20px;overflow:hidden}
+.module:first-of-type{border-color:color-mix(in srgb,var(--acc) 45%,var(--line))}
+.module-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:18px 22px 0}
+.module-head h3{font-size:1.15rem;font-weight:650;letter-spacing:-.01em}
+.status{font-size:10.5px;padding:3px 10px;border-radius:99px;background:color-mix(in srgb,currentColor 12%,transparent)}
+.status.active{color:var(--acc)}.status.done{color:var(--amb)}
+.module-body{padding:10px 22px 22px}
+.role-line{font-size:11px;color:var(--mut);margin-bottom:14px}
+.module-body ul{padding-left:18px;font-size:15px}.module-body li{margin-bottom:8px;padding-left:4px}.module-body li::marker{color:var(--acc)}
+.figure{margin-top:18px;background:#fff;border-radius:14px;padding:10px}.figure img{width:100%;display:block;border-radius:8px}
+.figcap{font-size:13px;color:var(--mut);padding:8px 2px 0}.figcap .tagno{color:var(--acc);font-weight:600}
+.figrow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lab{margin-top:20px;border:1px solid var(--line);border-radius:16px;padding:16px;background:color-mix(in srgb,var(--bg) 60%,var(--sur))}
+.labhead{display:flex;flex-direction:column;gap:2px;margin-bottom:8px}.labhead span{font-size:12.5px;color:var(--mut)}
+#hea{height:230px}
+.rolelist{display:flex;flex-direction:column}
+.role{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}.role:first-child{border:0;padding-top:0}
+.role .when{font-size:11px;color:var(--mut);padding-top:5px}.role h4{font-size:1.05rem;font-weight:650;margin-bottom:4px}.role p{font-size:15px}
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.edu .col{border:1px solid var(--line);background:var(--sur);border-radius:18px;padding:20px}
+.edu h4{font-size:12px;letter-spacing:.08em;color:var(--acc);margin-bottom:10px}.edu p{margin-bottom:6px;font-size:15px}.edu ul{padding-left:18px;font-size:15px}.edu li{margin-bottom:4px}
+footer{border-top:1px solid var(--line);padding:40px 0 64px;font-size:14px;color:var(--mut)}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:44px}.avail{display:none}section{grid-template-columns:1fr}section>*,section .head{grid-column:1}section .head{grid-row:auto;position:static;margin-bottom:20px}}
+@media (max-width:640px){.figrow,.edu{grid-template-columns:1fr}.role{grid-template-columns:1fr;gap:4px}.tele{grid-template-columns:1fr 1fr}.bar{gap:10px}}
+@media (prefers-reduced-motion:reduce){.dot,.hero .copy,.stage{animation:none}html{scroll-behavior:auto}}
+#cs{aspect-ratio:6/5;touch-action:pan-y;cursor:grab;margin:6px 0 2px}#cs:active{cursor:grabbing}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button[aria-pressed=true]{border-color:var(--acc);color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.opts{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:10px 0 12px}
+.leg{height:5px;border-radius:9px;background:linear-gradient(90deg,hsl(165 72% 50%),hsl(95 72% 50%),hsl(45 72% 50%),hsl(0 72% 55%))}.legl{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin:3px 0 10px}
+.stage .note{margin-top:12px;font-size:13px;color:var(--tx)}.stage .fine{font-size:11.5px;margin-top:10px}.tele .bad{color:var(--bad)}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.4;-webkit-mask-image:radial-gradient(ellipse 85% 65% at 70% 0%,#000,transparent 75%);mask-image:radial-gradient(ellipse 85% 65% at 70% 0%,#000,transparent 75%)}
+.hero h1{font-size:clamp(3rem,7.4vw,5.6rem);letter-spacing:-.045em}
+.hero h1 em::after{content:'';display:block;width:min(100%,520px);height:12px;margin-top:18px;background:linear-gradient(var(--acc),var(--acc)) center/100% 1.5px no-repeat,linear-gradient(var(--acc),var(--acc)) left/1.5px 100% no-repeat,linear-gradient(var(--acc),var(--acc)) right/1.5px 100% no-repeat}
+.bar nav a.on{color:var(--tx);background:var(--sur);box-shadow:inset 0 -2px 0 var(--acc)}
+.head .num{display:grid;place-items:center;width:34px;height:34px;border:1.5px solid var(--acc);border-radius:50%;margin-bottom:12px}
+.module,.stage{position:relative}
+.module::before,.stage::before,.module::after,.stage::after{content:'';position:absolute;width:24px;height:24px;pointer-events:none;border:0 solid var(--acc)}
+.module::before,.stage::before{top:0;left:0;border-width:2.5px 0 0 2.5px;border-top-left-radius:22px}
+.module::after,.stage::after{bottom:0;right:0;border-width:0 2.5px 2.5px 0;border-bottom-right-radius:22px}
+.module{transition:border-color .25s}.module:hover{border-color:var(--acc)}
+.skillgrid span{transition:transform .2s,border-color .2s,color .2s}.skillgrid span:hover{transform:translateY(-3px);border-color:var(--acc);color:var(--acc)}
+footer{padding:64px 0 72px}
+.cta{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:700;letter-spacing:-.04em;line-height:1.05;max-width:19ch;color:var(--tx)}
+.fm{margin-top:22px;font-size:1.05rem}
 
-  .topbar{position:sticky; top:0; z-index:20; padding-top:env(safe-area-inset-top,0px); background:rgba(8,11,13,0.96);}
-  .hud{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:10px 20px;
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.04em;
-    color:var(--muted); flex-wrap:wrap; gap:8px;
-  }
-  .hud .id{color:var(--green);}
-  .hud .stat{display:flex; align-items:center; gap:6px;}
-  .dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 1.8s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
-  @media (prefers-reduced-motion: reduce){.dot{animation:none;}}
-
-  .navbar{
-    display:flex; gap:0; overflow-x:auto;
-    border-bottom:1px solid var(--line);
-    font-family:'IBM Plex Mono',monospace; font-size:12px;
-  }
-  .navbar a{
-    color:var(--muted); text-decoration:none; white-space:nowrap;
-    padding:10px 16px; border-right:1px solid var(--line);
-    transition:color .15s ease;
-  }
-  .navbar a:hover{color:var(--green); text-decoration:none;}
-  .navbar a.linkedin{color:var(--amber); margin-left:auto;}
-  .navbar a.linkedin:hover{color:var(--amber); text-decoration:underline;}
-
-  main{max-width:920px; margin:0 auto; padding:0 20px;}
-
-  .hero{padding:64px 0 40px; border-bottom:1px solid var(--line);}
-  .hero .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--amber); margin-bottom:18px;}
-  .hero h1{font-size:clamp(2.2rem, 6vw, 3.6rem); font-weight:600; line-height:1.05; letter-spacing:-.01em;}
-  .hero h1 span{color:var(--green);}
-  .hero p.role{margin-top:14px; font-size:1.05rem; color:var(--muted); max-width:520px;}
-  .hero .links{margin-top:24px; display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono',monospace; font-size:13px;}
-
-  section{padding:44px 0; border-bottom:1px solid var(--line); scroll-margin-top:84px;}
-  section:last-of-type{border-bottom:none;}
-  .head{display:flex; align-items:baseline; gap:12px; margin-bottom:22px;}
-  .head .num{font-family:'IBM Plex Mono',monospace; color:var(--muted); font-size:13px;}
-  .head h2{font-size:1.3rem; font-weight:600;}
-
-  .brief{max-width:640px; color:var(--text); font-size:1rem;}
-  .brief + .brief{margin-top:14px;}
-
-  .skillgrid{display:flex; flex-wrap:wrap; gap:8px;}
-  .skillgrid span{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text);
-    border:1px solid var(--line); padding:5px 10px; background:var(--panel);
-  }
-
-  .module{
-    border:1px solid var(--line); background:var(--panel);
-    margin-bottom:18px; position:relative;
-  }
-  .module-head{
-    display:flex; justify-content:space-between; align-items:center; gap:12px;
-    padding:14px 18px; border-bottom:1px solid var(--line); flex-wrap:wrap;
-  }
-  .module-head h3{font-size:1.05rem; font-weight:600;}
-  .status{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.05em; padding:3px 8px; border:1px solid currentColor;}
-  .status.active{color:var(--green);}
-  .status.done{color:var(--amber);}
-  .module-body{padding:18px;}
-  .module-body p.role-line{color:var(--amber); font-size:12.5px; letter-spacing:.04em; margin-bottom:14px; font-family:'IBM Plex Mono',monospace; border-bottom:1px dashed var(--line); padding-bottom:10px;}
-  .module-body ul{padding-left:18px; color:var(--text); font-size:15px;}
-  .module-body li{margin-bottom:6px;}
-  .module-body img{width:100%; display:block; border:none;}
-  .figure{
-    position:relative; margin-top:18px; padding:14px;
-    background:
-      linear-gradient(var(--green),var(--green)) top left / 18px 2px no-repeat,
-      linear-gradient(var(--green),var(--green)) top left / 2px 18px no-repeat,
-      linear-gradient(var(--green),var(--green)) top right / 18px 2px no-repeat,
-      linear-gradient(var(--green),var(--green)) top right / 2px 18px no-repeat,
-      linear-gradient(var(--green),var(--green)) bottom left / 18px 2px no-repeat,
-      linear-gradient(var(--green),var(--green)) bottom left / 2px 18px no-repeat,
-      linear-gradient(var(--green),var(--green)) bottom right / 18px 2px no-repeat,
-      linear-gradient(var(--green),var(--green)) bottom right / 2px 18px no-repeat;
-  }
-  .figcap{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); padding:10px 2px 0; letter-spacing:.02em;}
-  .figcap .tagno{color:var(--amber);}
-  .figrow{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
-  @media (max-width:640px){.figrow{grid-template-columns:1fr;}}
-  .hl{color:var(--green); font-weight:600;}
-  .hl-a{color:var(--amber); font-weight:600;}
-  .kicker{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.08em; margin-bottom:8px;}
-
-  .rolelist{display:flex; flex-direction:column; gap:18px;}
-  .role{display:grid; grid-template-columns:150px 1fr; gap:16px;}
-  .role .when{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);}
-  .role h4{font-size:1rem; font-weight:600; margin-bottom:4px;}
-  .role p{color:var(--text); font-size:14px;}
-  @media (max-width:560px){.role{grid-template-columns:1fr;}}
-
-  .edu{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-  .edu .col h4{font-size:.95rem; color:var(--green); font-family:'IBM Plex Mono',monospace; margin-bottom:10px;}
-  .edu .col p{font-size:14px; color:var(--text); margin-bottom:6px;}
-  .edu .col ul{padding-left:16px; font-size:14px; color:var(--muted);}
-  @media (max-width:560px){.edu{grid-template-columns:1fr;}}
-
-  footer{padding:40px 20px 60px; text-align:center;}
-  footer .mono{font-size:12px; color:var(--muted);}
-  footer a{color:var(--green);}
-</style>
-</head>
-<body>
-
-<div class="topbar">
-  <div class="hud">
-    <div class="id">VN-01 // NAIR, VIVEK</div>
-    <div class="stat"><span class="dot"></span> STATUS: ONLINE — OPEN TO INTERNSHIPS</div>
-    <div>CALGARY, AB</div>
-  </div>
-  <nav class="navbar">
-    <a href="#brief">Brief</a>
-    <a href="#why-eng">Why Engineering</a>
-    <a href="#why-fit">Why Me</a>
-    <a href="#systems">Systems</a>
-    <a href="#missions">Missions</a>
-    <a href="#crew">Ground Crew</a>
-    <a href="#credentials">Credentials</a>
-    <a class="linkedin" href="https://www.linkedin.com/in/vivek-nair-3a0b18315" target="_blank" rel="noopener">LinkedIn ↗</a>
-  </nav>
+.bar{gap:16px}.gps{position:static;flex:1;display:flex;justify-content:center;min-width:0}
+#gb{display:flex;align-items:center;gap:12px;width:100%;max-width:380px;padding:6px 8px 6px 14px;border:1px solid var(--line);background:var(--sur);border-radius:99px;text-align:left}
+#gb span{flex:1;min-width:0;line-height:1.2}#gb small{display:block;font-size:10.5px;color:var(--mut)}#gb b{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+#gb em{font-style:normal;font-family:'Geist Mono',monospace;font-size:11px;color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent);padding:5px 10px;border-radius:99px;white-space:nowrap}
+.pin{width:12px;height:12px;border-radius:50%;background:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.28);flex:none}
+.panel{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(390px,92vw);max-height:calc(100dvh - 90px);overflow:auto;background:var(--sur);border:1px solid var(--line);border-radius:22px;padding:16px 8px 10px;box-shadow:0 24px 60px rgba(0,0,0,.35);z-index:30}
+.panel[hidden]{display:none}.pt{font-weight:650;font-size:1.05rem;padding:0 14px 8px}
+#gl{list-style:none}#gl li{position:relative}
+#gl li::before{content:'';position:absolute;left:26px;top:0;bottom:0;width:2px;background:var(--line)}
+#gl li:first-child::before{top:50%}#gl li:last-child::before{bottom:50%}#gl li.done::before{background:var(--acc)}
+#gl a{display:grid;grid-template-columns:30px 1fr;column-gap:12px;padding:9px 12px;border-radius:12px;color:var(--tx);position:relative}
+#gl a:hover{background:color-mix(in srgb,var(--acc) 10%,transparent);text-decoration:none}
+.nd{grid-row:1/3;align-self:center;justify-self:center;width:12px;height:12px;border-radius:50%;background:var(--sur);border:2px solid var(--mut);position:relative;z-index:1}
+#gl li.done .nd{background:var(--acc);border-color:var(--acc)}
+#gl li.on .nd{background:#3b82f6;border-color:#3b82f6;box-shadow:0 0 0 5px rgba(59,130,246,.28)}
+#gl b{font-weight:600;font-size:15px}#gl small{font-size:12.5px;color:var(--mut)}#gl li.on small{color:#3b82f6;font-weight:600}
+.prog{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--acc);transform-origin:left;transform:scaleX(0)}
+.scope{display:grid;grid-template-columns:132px 1fr;gap:10px 16px;align-items:center;margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--bg) 60%,var(--sur))}
+.scope .sl,.scope .mn,.scope .sc{grid-column:1/-1}
+.stage .sc{font-weight:600;color:var(--tx);font-size:13.5px;margin:0}.sc small{display:block;font-weight:400;color:var(--mut);font-size:12px;margin-top:2px;line-height:1.45}
+#mic{width:132px;height:132px;border-radius:50%;border:2px solid var(--line);cursor:grab;touch-action:pan-y;box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 14%,transparent)}
+.sr .seg{margin-bottom:10px}
+.stage .pr p{display:grid;grid-template-columns:90px 1fr 64px;gap:8px;align-items:center;font-size:11px;color:var(--mut);margin:0 0 5px;line-height:1.2}
+.pr u{display:block;height:5px;border-radius:9px;background:var(--line);position:relative}.pr u i{position:absolute;left:0;top:0;bottom:0;border-radius:9px;background:var(--acc);transition:width .4s}
+.pr b{color:var(--tx);font:500 10.5px 'Geist Mono',monospace;text-align:right;white-space:nowrap}
+.stage .mn{font-size:12.5px;color:var(--tx);margin:0}
+@media (max-width:640px){.panel{left:12px;right:12px;width:auto;transform:none}.bar{gap:10px}}
+@media (max-width:440px){.scope{grid-template-columns:1fr}#mic{margin:0 auto}}
+</style></head><body>
+<header class="bar"><a class="brand" href="#top">Vivek Nair</a>
+<div class="gps"><button id="gb" aria-expanded="false" aria-controls="gp"><i class="pin"></i><span><small>You are here</small><b id="gh">Top of page</b></span><em id="gc">0 of 7 ▾</em></button>
+<div class="panel" id="gp" hidden><p class="pt">Where to?</p><ol id="gl"></ol></div></div>
+<span class="avail"><i class="dot"></i>Open to internships</span><div class="prog" id="pg"></div></header>
+<main id="top">
+<div class="hero">
+<div class="copy"><h1>Vivek Nair.<em>Designing structures that survive launch.</em></h1>
+<p class="role">3rd-year Mechanical Engineering student minoring in Aerospace at the University of Calgary. Structural Lead on a CubeSat headed for orbit, with hands-on time in machining, CAD, and materials testing.</p>
+<div class="links"><a href="mailto:nairvivek06@gmail.com">nairvivek06@gmail.com</a><a href="tel:+14036515395">(403) 651-5395</a><a href="https://www.linkedin.com/in/vivek-nair-3a0b18315" target="_blank" rel="noopener">LinkedIn</a></div></div>
+<div class="stage card"><h2>Stress-test a CubeSat frame</h2><p>Drag to rotate. Change the rail wall, material and launch load to see where the structure yields.</p>
+<canvas id="cs" aria-label="Interactive 3D CubeSat frame colored by rail stress"></canvas>
+<div class="leg"></div><div class="legl"><span>Low rail stress</span><span>Yield</span></div>
+<div class="tele"><div><small>Rail mass</small><b id="rm"></b></div><div><small>Peak rail stress</small><b id="rs"></b></div><div><small>Margin of safety</small><b id="rg"></b></div><div><small>First lateral mode</small><b id="rf"></b></div></div>
+<p class="note" id="nt"></p>
+<div class="opts"><div class="seg" id="su"><button data-u="1" aria-pressed="false">1U</button><button data-u="2" aria-pressed="false">2U</button><button data-u="3" aria-pressed="true">3U</button></div>
+<button id="sh">Run vibration test</button></div>
+<div class="scope"><p class="sc">Material under the microscope<small>The frame above uses the selected material. Drag the sample to move it. Strength per weight is relative to Al 6061.</small></p>
+<canvas id="mic" width="160" height="160" aria-label="Simulated microscope view of the selected material"></canvas>
+<div class="sr"><div class="seg" id="sm"><button data-m="6061" aria-pressed="true">Al 6061</button><button data-m="7075" aria-pressed="false">Al 7075</button><button data-m="Ti" aria-pressed="false">Ti-6Al-4V</button><button data-m="HEA" aria-pressed="false">HEA</button></div><div class="pr" id="pr"></div></div>
+<label class="sl">Zoom <output id="zmv"></output><input type="range" id="zm" min="0.7" max="3" step="0.05" value="1.2"></label>
+<p class="mn" id="mn"></p></div>
+<div class="ctl"><label class="sl">Rail wall thickness <output id="thv"></output><input type="range" id="th" min="0.3" max="4" step="0.1" value="2"></label>
+<label class="sl">Satellite mass <output id="msv"></output><input type="range" id="ms" min="0.5" max="6" step="0.1" value="3"></label>
+<label class="sl">Lateral launch load <output id="glv"></output><input type="range" id="gl" min="5" max="60" step="1" value="30"></label>
+<label class="sl">Exploded view <output id="exv"></output><input type="range" id="ex" min="0" max="100" step="1" value="0"></label></div>
+<p class="fine">Simplified estimate: four hollow 8.5 mm square rails, load applied at mid-height, safety factor 1.25. Panels and internals add stiffness, so use it as a guide.</p></div>
 </div>
-
-<main>
-  <div class="hero">
-    <div class="tag mono">MISSION LOG — MECHANICAL &amp; AEROSPACE ENGINEERING</div>
-    <h1>Vivek Nair.<br>Building things that leave <span>the ground.</span></h1>
-    <p class="role">3rd-year Mechanical Engineering student minoring in Aerospace at the University of Calgary. Structural Lead on a CubeSat headed for orbit, with hands-on time in machining, CAD, and materials testing.</p>
-    <div class="links">
-      <a href="mailto:nairvivek06@gmail.com">nairvivek06@gmail.com</a>
-      <a href="tel:+14036515395">(403) 651-5395</a>
-      <a href="https://www.linkedin.com/in/vivek-nair-3a0b18315" target="_blank" rel="noopener">linkedin.com/in/vivek-nair</a>
-    </div>
-  </div>
-
-  <section id="brief">
+<section id="brief">
     <div class="head"><span class="num mono">00</span><h2>Brief</h2></div>
-    <p class="kicker">WHAT I'M DOING NOW, IN SHORT</p>
-    <p class="brief">I like problems that only get solved when the CAD model, the machine shop, and the spec sheet all agree with each other. Most of my time goes toward <span class="hl">CalgaryToSpace</span>, where I lead a 10-person structural team designing a CubeSat for ExoLaunch deployment — everything from CNC-machined aluminum frames to the fixtures that keep the satellite safe in transit. Outside of that, I've led a product team through a full build cycle, modelled and analyzed a mechanical system in SolidWorks end to end, and I'm now running strain-rate tests on <span class="hl-a">high entropy alloys</span> in a university research lab.</p>
-    <p class="brief">I'm looking for an internship where CAD, manufacturing, and structural design work can go toward real flight hardware.</p>
+    <p class="brief">I like problems that only get solved when the CAD model, the machine shop, and the spec sheet all agree with each other. Most of my time goes toward <span class="hl">CalgaryToSpace</span>, where I lead a 10-person structural team designing a CubeSat for ExoLaunch deployment — everything from CNC-machined aluminum frames to the fixtures that keep the satellite safe in transit. Outside of that, I’ve led a product team through a full build cycle, modelled and analyzed a mechanical system in SolidWorks end to end, and I’m now running strain-rate tests on <span class="hl-a">high entropy alloys</span> in a university research lab.</p>
+    <p class="brief">I’m looking for an internship where CAD, manufacturing, and structural design work can go toward real flight hardware.</p>
   </section>
-
-  <section id="why-eng">
+<section id="why-eng">
     <div class="head"><span class="num mono">01</span><h2>Why Engineering</h2></div>
-    <p class="kicker">ON WHY I DO THIS</p>
-    <p class="brief">Engineering, to me, is the discipline of turning "I don't know if this is possible" into a working prototype. That question is what pulled me toward math early on, not because I was chasing grades, but because a good equation is the closest thing to a guarantee you get in an uncertain world. The further I pushed into harder problems, the more I wanted a career spent testing the edges of what's already been built, whether that's a satellite headed for orbit or a machine nobody has designed yet.</p>
-    <p class="brief">Aerospace pulls at that same instinct. It's one of the few fields where every gram, every tolerance, and every material choice gets checked against physics with <span class="hl">zero room to bluff</span>. That mix of rigor and the unknown, of knowing the math has to hold up before anything leaves the ground, is what keeps me building.</p>
+    <p class="brief">Engineering, to me, is the discipline of turning “I don’t know if this is possible” into a working prototype. That question is what pulled me toward math early on, not because I was chasing grades, but because a good equation is the closest thing to a guarantee you get in an uncertain world. The further I pushed into harder problems, the more I wanted a career spent testing the edges of what’s already been built, whether that’s a satellite headed for orbit or a machine nobody has designed yet.</p>
+    <p class="brief">Aerospace pulls at that same instinct. It’s one of the few fields where every gram, every tolerance, and every material choice gets checked against physics with <span class="hl">zero room to bluff</span>. That mix of rigor and the unknown, of knowing the math has to hold up before anything leaves the ground, is what keeps me building.</p>
   </section>
-
-  <section id="why-fit">
+<section id="why-fit">
     <div class="head"><span class="num mono">02</span><h2>Why Me</h2></div>
-    <p class="kicker">A SHORT VERSION OF MY COVER LETTER</p>
-    <p class="brief">I take problems apart before I trust them. Before a design is anything more than a sketch, I want to know its tolerances, its materials, and how it actually gets manufactured, not just what it looks like rendered. Leading the CalgaryToSpace structural team taught me how to hold a design to a standard someone else set, <span class="hl">ExoLaunch's</span> launch regulations, coordinate ten people who each own a piece of it, and still be the one troubleshooting a fixture the night before a shipment.</p>
-    <p class="brief">I pick up new tools quickly because I've had to: CAD, CNC programming, and circuit simulation were all things I learned on the job because a project needed them. I'd rather ask a clarifying question early than guess and rebuild later. What I'm looking for is a team building something real, where I can bring that mix of <span class="hl-a">structural rigor</span> and hands-on manufacturing sense, and leave having learned how the professionals do it.</p>
+    <p class="brief">I take problems apart before I trust them. Before a design is anything more than a sketch, I want to know its tolerances, its materials, and how it actually gets manufactured, not just what it looks like rendered. Leading the CalgaryToSpace structural team taught me how to hold a design to a standard someone else set, <span class="hl">ExoLaunch’s</span> launch regulations, coordinate ten people who each own a piece of it, and still be the one troubleshooting a fixture the night before a shipment.</p>
+    <p class="brief">I pick up new tools quickly because I’ve had to: CAD, CNC programming, and circuit simulation were all things I learned on the job because a project needed them. I’d rather ask a clarifying question early than guess and rebuild later. What I’m looking for is a team building something real, where I can bring that mix of <span class="hl-a">structural rigor</span> and hands-on manufacturing sense, and leave having learned how the professionals do it.</p>
   </section>
-
-  <section id="systems">
+<section id="systems">
     <div class="head"><span class="num mono">03</span><h2>Systems &amp; Tools</h2></div>
-    <p class="kicker">SOFTWARE, SHOP TOOLS, AND STANDARDS I WORK IN</p>
     <div class="skillgrid">
       <span>SolidWorks</span><span>Ansys FEA</span><span>Ansys Granta</span><span>Mastercam</span>
       <span>Simulink</span><span>Python</span><span>C++</span><span>MATLAB</span><span>EES</span>
@@ -209,8 +183,7 @@
       <span>3D Printing</span><span>Microcontrollers</span><span>ExoLaunch Payload Standards</span>
     </div>
   </section>
-
-  <section id="missions">
+<section id="missions">
     <div class="head"><span class="num mono">04</span><h2>Missions</h2></div>
 
     <div class="module">
@@ -281,14 +254,15 @@
         <ul>
           <li>Support experimental testing of <span class="hl">high entropy alloys</span> under high strain rates to evaluate material performance and deformation mechanisms.</li>
           <li>Analyze test data in Excel to identify trends and support research findings.</li>
-        </ul>
+        </ul><div class="lab"><div class="labhead"><b>Strain-rate explorer</b><span>Illustrative Johnson–Cook model with representative constants, not MaPP Lab data.</span></div>
+<canvas id="hea"></canvas>
+<label class="sl">Strain rate <output id="srv"></output><input type="range" id="sr" min="-3" max="4" step="0.1" value="2"></label>
+<div class="tele two"><div><small>Conventional alloy at 5% strain</small><b id="r0"></b></div><div><small>High entropy alloy at 5% strain</small><b id="r1" class="a"></b></div></div></div>
       </div>
     </div>
   </section>
-
-  <section id="crew">
+<section id="crew">
     <div class="head"><span class="num mono">05</span><h2>Ground Crew</h2></div>
-    <p class="kicker">LEADERSHIP &amp; WORK OUTSIDE THE LAB</p>
     <div class="rolelist">
       <div class="role">
         <div class="when mono">JUL 2024 – MAY 2026</div>
@@ -304,8 +278,7 @@
       </div>
     </div>
   </section>
-
-  <section id="credentials">
+<section id="credentials">
     <div class="head"><span class="num mono">06</span><h2>Credentials</h2></div>
     <div class="edu">
       <div class="col">
@@ -314,7 +287,7 @@
         <p style="color:var(--muted)">University of Calgary · Sept 2024 – Present</p>
         <ul>
           <li>GPA 3.78 / 4.0</li>
-          <li>Dean's List, 2024–2026</li>
+          <li>Dean’s List, 2024–2026</li>
           <li>Alexander Rutherford Scholarship</li>
         </ul>
       </div>
@@ -330,10 +303,137 @@
     </div>
   </section>
 
-  <footer>
-    <p class="mono">TRANSMISSION ENDS — <a href="mailto:nairvivek06@gmail.com">nairvivek06@gmail.com</a> · (403) 651-5395 · Calgary, AB</p>
-  </footer>
+<footer><p class="cta">Looking for a structures intern? Let’s talk.</p><p class="fm"><a href="mailto:nairvivek06@gmail.com">nairvivek06@gmail.com</a> · (403) 651-5395 · Calgary, AB</p></footer>
 </main>
+<script>
+(()=>{
+const R=6371,MU=398600.4418,WE=7.2921159e-5,PI=Math.PI,D=PI/180,LA=51.05*D,LO=-114.07*D,CV=Math.cos(.5),SV=Math.sin(.5);
+const $=s=>document.querySelector(s),C={};
+const col=()=>{const s=getComputedStyle(document.documentElement);for(const k of['tx','mut','line','acc','amb','g1','g2','gl','sur','bad'])C[k]=s.getPropertyValue('--'+k).trim()};
+col();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(col,60));
+const setup=cv=>{const c=cv.getContext('2d');const f=()=>{const d=Math.min(devicePixelRatio||1,2);cv.W=cv.clientWidth;cv.H=cv.clientHeight;cv.width=cv.W*d;cv.height=cv.H*d;c.setTransform(d,0,0,d,0,0)};f();new ResizeObserver(()=>{f();cv.redraw&&cv.redraw()}).observe(cv);return c};
+const MAT={'6061':{E:68.9e3,y:276,r:2.7e-3},'7075':{E:71.7e3,y:503,r:2.81e-3},'Ti':{E:113.8e3,y:880,r:4.43e-3},'HEA':{E:200e3,y:250,r:7.9e-3}};
+const S={u:3,mat:'6061',t:2,m:3,g:30,ex:0,yaw:.7,p:.4,shake:false,ph:0,drag:0,lx:0,ly:0,play:!matchMedia('(prefers-reduced-motion: reduce)').matches};
+const rc=$('#cs'),cx=setup(rc);
+const calc=()=>{const M=MAT[S.mat],L=113.5*S.u,w=8.5,t=S.t,A=w*w-(w-2*t)**2,I=4*((w**4-(w-2*t)**4)/12+A*45.75**2),sg=S.m*9.81*S.g*L/2*50/I,mb=4*A*L*M.r;return{L,sg,mb,y:M.y,ms:M.y/(1.25*sg)-1,f:Math.sqrt(3*M.E*I*1e-6/((L/1000)**3)/(S.m+.236*mb/1000))/(2*PI)}};
+const FI=[[0,1,2,3],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]];
+const BV=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+const rgb=h=>{const n=parseInt(h.slice(1),16);return[n>>16,n>>8&255,n&255]};
+function draw(){
+ const W=rc.W,H=rc.H,r=calc(),L=r.L,ex=S.ex/100,k=Math.min(H*.68/(L+100*ex+40),W*.42/(100+60*ex)),ox=W/2,oy=H/2;
+ const cy=Math.cos(S.yaw),sy=Math.sin(S.yaw),cp=Math.cos(S.p),sp=Math.sin(S.p),amp=S.shake?Math.sin(S.ph)*L*.05:0;
+ const T=q=>{const x=q[0]+amp*((q[2]+L/2)/L)**2,y=q[1],z=q[2],x1=x*cy-y*sy,y1=x*sy+y*cy;return[ox+x1*k,oy-(z*cp-y1*sp)*k,y1*cp+z*sp,x1,z*cp-y1*sp]};
+ const F=[],add=(v,st)=>{const q=v.map(T);F.push({q,st,d:q.reduce((a,b)=>a+b[2],0)/q.length})};
+ const o=ex*70,t3=rgb(C.tx);
+ for(const[a,b]of[[-1,-1],[1,-1],[1,1],[-1,1]])for(let n=0;n<8;n++){
+  const h=L/8,q=Math.min(1,1.25*r.sg/r.y*(1-(n+.5)/8)**2),hue=165-165*q;
+  const c=BV.map(([i,j,m])=>[a*45.75+i*4.25,b*45.75+j*4.25,-L/2+n*h+h/2+m*h/2]);
+  for(const f of FI)add(f.map(x=>c[x]),{hue});
+ }
+ for(const s of[-1,1]){
+  add([[s*(50+o),-50,-L/2],[s*(50+o),50,-L/2],[s*(50+o),50,L/2],[s*(50+o),-50,L/2]],{al:.14});
+  add([[-50,s*(50+o),-L/2],[50,s*(50+o),-L/2],[50,s*(50+o),L/2],[-50,s*(50+o),L/2]],{al:.14});
+  const z=s*(L/2+ex*60);add([[-50,-50,z],[50,-50,z],[50,50,z],[-50,50,z]],{al:.3});
+ }
+ F.sort((a,b)=>a.d-b.d);cx.clearRect(0,0,W,H);cx.lineJoin='round';
+ for(const f of F){
+  cx.beginPath();f.q.forEach((p,i)=>i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]));cx.closePath();
+  if(f.st.hue!==undefined){const u=[f.q[1][3]-f.q[0][3],f.q[1][4]-f.q[0][4],f.q[1][2]-f.q[0][2]],v=[f.q[2][3]-f.q[0][3],f.q[2][4]-f.q[0][4],f.q[2][2]-f.q[0][2]],nz=u[0]*v[1]-u[1]*v[0],nl=Math.hypot(u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],nz)||1,sh=.5+.5*Math.abs(nz/nl);
+   cx.fillStyle='hsl('+f.st.hue+' 70% '+(34+26*sh)+'%)';cx.fill();cx.strokeStyle='rgba(0,0,0,.22)';cx.lineWidth=.6;cx.stroke()}
+  else{cx.fillStyle='rgba('+t3+','+f.st.al+')';cx.fill();cx.strokeStyle='rgba('+t3+',.4)';cx.lineWidth=.8;cx.stroke()}
+ }
+ const A0=T([-155,0,0]),A1=T([-58,0,0]),an=Math.atan2(A1[1]-A0[1],A1[0]-A0[0]);
+ cx.strokeStyle=C.amb;cx.fillStyle=C.amb;cx.lineWidth=2.5;cx.beginPath();cx.moveTo(A0[0],A0[1]);cx.lineTo(A1[0],A1[1]);cx.stroke();
+ cx.beginPath();cx.moveTo(A1[0],A1[1]);for(const d of[2.7,-2.7])cx.lineTo(A1[0]+11*Math.cos(an+d),A1[1]+11*Math.sin(an+d));cx.closePath();cx.fill();
+ cx.font='500 11px Geist Mono,monospace';cx.textAlign='center';cx.fillText(S.g+' g',A0[0],A0[1]-9);
+ const b=T([0,0,-L/2-ex*60-12]);cx.setLineDash([4,4]);cx.strokeStyle=C.mut;cx.lineWidth=1;cx.beginPath();
+ [[-85,-85],[85,-85],[85,85],[-85,85]].forEach((c,i)=>{const q=T([c[0],c[1],-L/2-ex*60-12]);i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1])});cx.closePath();cx.stroke();cx.setLineDash([]);
+ $('#rm').textContent=Math.round(r.mb)+' g';$('#rs').textContent=r.sg.toFixed(0)+' MPa';
+ const g=$('#rg');g.textContent=(r.ms>=0?'+':'')+r.ms.toFixed(2);g.className=r.ms<0?'bad':'';
+ $('#rf').textContent=Math.round(r.f)+' Hz';
+ if(S.shake){cx.strokeStyle=C.acc;cx.lineWidth=1.6;cx.beginPath();for(let x=0;x<=W;x+=3){const y=H-20+Math.sin(x/W*46-S.ph)*9*(.55+.45*Math.sin(x/W*7+S.ph*.2));x?cx.lineTo(x,y):cx.moveTo(x,y)}cx.stroke();cx.fillStyle=C.mut;cx.font='10px Geist Mono,monospace';cx.textAlign='left';cx.fillText('Accelerometer response at '+Math.round(r.f)+' Hz',8,H-38)}
+ $('#nt').textContent=r.ms<0?'The rails yield at the base. Thicken the wall, switch material, or cut the load.':r.f<100?'The rails hold, but the first mode is under about 100 Hz. Launch providers usually want it stiffer.':'The structure holds with margin. Thin the walls or add mass to find its limit.';
+}
+rc.redraw=draw;
+const sl=(id,key,fmt)=>{const e=$('#'+id),o=$('#'+id+'v'),f=()=>{S[key]=+e.value;o.textContent=fmt(S[key])};e.addEventListener('input',f);f()};
+sl('th','t',v=>v.toFixed(1)+' mm');sl('ms','m',v=>v.toFixed(1)+' kg');sl('gl','g',v=>v+' g');sl('ex','ex',v=>v+'%');
+const seg=(id,at,fn)=>{const g=$('#'+id);g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;fn(b.dataset[at]);g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b))})};
+seg('su','u',v=>{S.u=+v;const m=$('#ms');m.max=2*S.u;if(+m.value>2*S.u)m.value=2*S.u;m.dispatchEvent(new Event('input'))});
+seg('sm','m',v=>{S.mat=v;upm()});
+$('#sh').onclick=e=>{S.shake=!S.shake;e.target.textContent=S.shake?'Stop vibration test':'Run vibration test'};
+rc.addEventListener('pointerdown',e=>{S.drag=1;rc.setPointerCapture(e.pointerId);S.lx=e.clientX;S.ly=e.clientY});
+rc.addEventListener('pointermove',e=>{if(!S.drag)return;S.yaw+=(e.clientX-S.lx)*.01;if(e.pointerType==='mouse')S.p=Math.max(-.2,Math.min(1.45,S.p+(e.clientY-S.ly)*.01));S.lx=e.clientX;S.ly=e.clientY});
+const up=()=>{S.drag=0};rc.addEventListener('pointerup',up);rc.addEventListener('pointercancel',up);
+let last=performance.now();
+const loop=n=>{const dt=Math.min((n-last)/1000,.1);last=n;if(S.play&&!S.drag&&!S.shake)S.yaw+=dt*.3;if(S.shake)S.ph+=dt*2*PI*Math.min(calc().f/60,8);draw();requestAnimationFrame(loop)};
+requestAnimationFrame(loop);
 
-</body>
-</html>
+const MD={'6061':{d:'Fine, similar-sized grains. The dark dots are Mg₂Si particles that harden the alloy.',ax:1,tn:[-8,0,12],dots:1,st:0},
+'7075':{d:'Grains stretched by rolling, with fine hardening particles. The strongest of the aluminum options.',ax:.4,tn:[-10,0,14],dots:1,st:0},
+'Ti':{d:'Two phases woven together: light α plates with dark β between them, in a basketweave pattern.',ax:1,tn:[12,4,-10],dots:0,st:1},
+'HEA':{d:'Five elements in near-equal parts form one disordered crystal. The straight lines are annealing twins. Try it in the strain-rate explorer below.',ax:1,tn:[12,-2,-8],dots:0,st:2}};
+const PR=[['Yield strength',m=>m.y,1000,v=>Math.round(v)+' MPa'],['Stiffness',m=>m.E/1e3,250,v=>Math.round(v)+' GPa'],['Density',m=>m.r*1e3,9,v=>v.toFixed(2)+' g/cm³'],['Strength/weight',m=>m.y/(m.r*1e3),220,v=>(v/102.2).toFixed(1)+'×']];
+$('#pr').innerHTML=PR.map(()=>'<p><span></span><u><i></i></u><b></b></p>').join('');
+const SD=[];let sd=7;const rnd=()=>(sd=sd*16807%2147483647)/2147483647;
+for(let i=0;i<64;i++)SD.push([rnd(),rnd(),rnd(),rnd()]);
+const M={x:0,y:0,z:1.2},mc=$('#mic'),mx=mc.getContext('2d'),img=mx.createImageData(160,160);
+function mic(){
+ const m=MD[S.mat],N=160,dt=img.data,z=M.z;
+ for(let py=0;py<N;py++)for(let px=0;px<N;px++){
+  const u=(px/N-.5)/z+.5+M.x,v=(py/N-.5)/z+.5+M.y;let b1=9,b2=9,bi=0;
+  for(let i=0;i<64;i++){let dx=u-SD[i][0],dy=v-SD[i][1];dx-=Math.round(dx);dy-=Math.round(dy);dx*=m.ax;const d=dx*dx+dy*dy;if(d<b1){b2=b1;b1=d;bi=i}else if(d<b2)b2=d}
+  const g=SD[bi];let L=48+g[2]*26;
+  if(m.st){const a=g[3]*6.283,f=m.st==1?70:22;L-=Math.sin((u*Math.cos(a)+v*Math.sin(a))*f*6.283)>(m.st==1?.1:.86)?16:0;if(m.st==1&&g[2]>.5)L-=Math.sin((-u*Math.sin(a)+v*Math.cos(a))*f*6.283)>.3?9:0}
+  if(m.dots&&((px*73856093^py*19349663)>>>0)%173<3)L-=22;
+  if((Math.sqrt(b2)-Math.sqrt(b1))*z<.012)L=14;
+  const k=(py*N+px)*4,c=L*2.55;dt[k]=c+m.tn[0];dt[k+1]=c+m.tn[1];dt[k+2]=c+m.tn[2];dt[k+3]=255;
+ }
+ mx.putImageData(img,0,0);
+ const gr=mx.createRadialGradient(80,80,40,80,80,82);gr.addColorStop(0,'rgba(0,0,0,0)');gr.addColorStop(1,'rgba(0,0,0,.55)');mx.fillStyle=gr;mx.fillRect(0,0,160,160);
+ mx.strokeStyle='rgba(255,255,255,.3)';mx.lineWidth=1;mx.beginPath();mx.moveTo(72,80);mx.lineTo(88,80);mx.moveTo(80,72);mx.lineTo(80,88);mx.stroke();
+ mx.fillStyle='rgba(255,255,255,.9)';mx.font='11px Geist Mono,monospace';mx.textAlign='center';mx.fillText('×'+Math.round(z*250),80,148);
+}
+function pro(){const m=MAT[S.mat],ps=$('#pr').children;PR.forEach((r,i)=>{const v=r[1](m);ps[i].children[0].textContent=r[0];ps[i].children[1].firstChild.style.width=Math.min(100,v/r[2]*100)+'%';ps[i].children[2].textContent=r[3](v)});$('#mn').textContent=MD[S.mat].d}
+function upm(){mic();pro()}
+$('#zm').addEventListener('input',e=>{M.z=+e.target.value;$('#zmv').textContent='×'+Math.round(M.z*250);mic()});
+let md=0,ml=[0,0],pd=0;
+mc.addEventListener('pointerdown',e=>{md=1;mc.setPointerCapture(e.pointerId);ml=[e.clientX,e.clientY]});
+mc.addEventListener('pointermove',e=>{if(!md)return;M.x-=(e.clientX-ml[0])/132/M.z;M.y-=(e.clientY-ml[1])/132/M.z;ml=[e.clientX,e.clientY];if(!pd){pd=1;requestAnimationFrame(()=>{pd=0;mic()})}});
+const mu=()=>{md=0};mc.addEventListener('pointerup',mu);mc.addEventListener('pointercancel',mu);
+$('#zmv').textContent='×'+Math.round(M.z*250);upm();
+
+const hc=$('#hea'),hx=setup(hc);
+const J=[{A:350,B:500,m:.4,C:.015},{A:650,B:900,m:.5,C:.03}];
+const sig=(j,e,r)=>(j.A+j.B*e**j.m)*(1+j.C*Math.log(r/1e-3));
+function dh(){
+ const W=hc.W,H=hc.H,l=44,r=10,tp=12,b=24,v=+$('#sr').value,rate=10**v;
+ const X=e=>l+e/.3*(W-l-r),Y=s=>H-b-s/2000*(H-tp-b);
+ hx.clearRect(0,0,W,H);hx.font='10px Geist Mono,monospace';hx.lineWidth=1;
+ for(let s=0;s<=2000;s+=500){hx.strokeStyle=C.line;hx.beginPath();hx.moveTo(l,Y(s));hx.lineTo(W-r,Y(s));hx.stroke();hx.fillStyle=C.mut;hx.textAlign='right';hx.fillText(s,l-6,Y(s)+3)}
+ hx.textAlign='center';for(let e=0;e<=.3;e+=.1)hx.fillText(e.toFixed(1),X(e),H-8);
+ hx.textAlign='left';hx.fillText('MPa',4,tp);
+ const cur=(j,r2,st,w,dash)=>{hx.setLineDash(dash||[]);hx.strokeStyle=st;hx.lineWidth=w;hx.beginPath();for(let i=0;i<=60;i++){const e=i/200,y=sig(j,e,r2);i?hx.lineTo(X(e),Y(y)):hx.moveTo(X(e),Y(y))}hx.stroke();hx.setLineDash([])};
+ hx.globalAlpha=.4;cur(J[0],1e-3,C.mut,1,[4,4]);cur(J[1],1e-3,C.acc,1,[4,4]);hx.globalAlpha=1;
+ cur(J[0],rate,C.tx,2);cur(J[1],rate,C.acc,2.4);
+ J.forEach((j,i)=>{const y=sig(j,.05,rate),y0=sig(j,.05,1e-3);hx.fillStyle=i?C.acc:C.tx;hx.beginPath();hx.arc(X(.05),Y(y),4,0,2*PI);hx.fill();$('#r'+i).textContent=Math.round(y)+' MPa (+'+Math.round((y/y0-1)*100)+'%)'});
+ $('#srv').innerHTML='10<sup>'+v.toFixed(1)+'</sup> s⁻¹';
+}
+hc.redraw=dh;$('#sr').addEventListener('input',dh);dh();
+const nl=[];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)nl.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('main section[id]').forEach(x=>io.observe(x));
+const ST=[['brief','Brief','Who I am, in short'],['why-eng','Why Engineering','What pulled me into this field'],['why-fit','Why Me','A short cover letter'],['systems','Tools','Software and shop skills'],['missions','Missions','Projects and research'],['crew','Ground Crew','Leadership and work outside the lab'],['credentials','Credentials','Education and certifications']];
+const gb=$('#gb'),gp=$('#gp'),gl=$('#gl'),secs=ST.map(x=>document.getElementById(x[0]));
+gl.innerHTML=ST.map(x=>'<li><a href="#'+x[0]+'"><span class="nd"></span><b>'+x[1]+'</b><small>'+x[2]+'</small></a></li>').join('')+'<li><a href="https://www.linkedin.com/in/vivek-nair-3a0b18315" target="_blank" rel="noopener"><span class="nd"></span><b>LinkedIn</b><small>Opens in a new tab</small></a></li>';
+const upd=()=>{let i=-1;secs.forEach((e,n)=>{if(e.getBoundingClientRect().top<innerHeight*.4)i=n});
+ $('#gh').textContent=i<0?'Top of page':ST[i][1];$('#gc').textContent=(i+1)+' of 7 ▾';
+ ST.forEach((x,n)=>{const li=gl.children[n];li.className=n===i?'on':n<i?'done':'';li.querySelector('small').textContent=n===i?'You are here':x[2]});
+ const mxs=document.documentElement.scrollHeight-innerHeight;$('#pg').style.transform='scaleX('+(mxs>0?Math.min(1,scrollY/mxs):0)+')'};
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+const tog=o=>{gp.hidden=!o;gb.setAttribute('aria-expanded',o)};
+gb.onclick=()=>tog(gp.hidden);gl.addEventListener('click',e=>{if(e.target.closest('a'))tog(false)});
+document.addEventListener('click',e=>{if(!e.target.closest('.gps'))tog(false)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!gp.hidden){tog(false);gb.focus()}});
+
+})();
+</script></body></html>
